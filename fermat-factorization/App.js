@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import { call } from 'react-native-reanimated';
 
 
 export default function App() {
   const [res, setRes] = useState("");
+  const execTime = timer(fermaFactors, Number(res));
   const clickHandler = () => {
-    (typeof(Number(res)) === Number) || (res <= 1000000 && res > 0) ? alert(`x = ${fermaFactors(Number(res))[0]}\ny = ${fermaFactors(Number(res))[1]}`) : alert('Incorrect input :(');
+    (!typeof(Number(res)) !== Number) && !(res < 1000000 && res > 0) ? alert("Incorrect input :(") : execTime < 3000 ? alert(`x = ${fermaFactors(Number(res))[0]}\ny = ${fermaFactors(Number(res))[1]}`) : alert("Runtime Error");
   }
   return (
     <View style={styles.container}>
@@ -22,6 +24,14 @@ export default function App() {
       <Button title='Calculate' onPress={clickHandler}/>
     </View>
   );
+}
+
+
+const timer = function(callback, ...args){
+  const start = new Date().getTime();
+  callback(...args);
+  const end = new Date().getTime();
+  return end - start;
 }
 
 
