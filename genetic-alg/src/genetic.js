@@ -3,15 +3,11 @@ import makeChromosome from './makeChromosome';
 
 const TARGET_IS_REACHED_FLAG = -1;
 const TARGET_NOT_REACHED_FLAG = -2;
-const POPULATION_COUNT = 5;
+const POPULATION_COUNT = 10;
 const GENES_COUNT = 4;
-const GENE_MIN = 1;
-let GENE_MAX;
+const GENE_MIN = 10;
+const GENE_MAX = 100;
 const MAX_ITERATIONS = 10000;
-
-const setGeneMax = (y) => {
-  GENE_MAX = y >= 10 ? Math.floor(y / 10) : y;
-};
 
 let population = new Array(POPULATION_COUNT);
 
